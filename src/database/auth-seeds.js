@@ -1,0 +1,65 @@
+"use strict";
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PermissionAssignment = exports.Permission = exports.Role = void 0;
+exports.Role = {
+    ADMINISTRATOR: 'administrator',
+    REGULAR_USER: 'regular_user',
+};
+exports.Permission = {
+    BROWSE_BOOKS: 'browse_books',
+    READ_BOOK: 'read_book',
+    EDIT_BOOK: 'edit_book',
+    ADD_BOOK: 'add_book',
+    DELETE_BOOK: 'delete_book',
+    BROWSE_AUTHORS: 'browse_authors',
+    READ_AUTHOR: 'read_author',
+    EDIT_AUTHOR: 'edit_author',
+    ADD_AUTHOR: 'add_author',
+    DELETE_AUTHOR: 'delete_author',
+    BROWSE_PUBLISHERS: 'browse_publishers',
+    READ_PUBLISHER: 'read_publisher',
+    EDIT_PUBLISHER: 'edit_publisher',
+    ADD_PUBLISHER: 'add_publisher',
+    DELETE_PUBLISHER: 'delete_publisher',
+    BROWSE_CATEGORIES: 'browse_categories',
+    READ_CATEGORY: 'read_category',
+    EDIT_CATEGORY: 'edit_category',
+    ADD_CATEGORY: 'add_category',
+    DELETE_CATEGORY: 'delete_category',
+};
+// Permission.BROWSE_BOOKS
+exports.PermissionAssignment = (_a = {},
+    _a[exports.Role.ADMINISTRATOR] = [
+        exports.Permission.BROWSE_BOOKS,
+        exports.Permission.READ_BOOK,
+        exports.Permission.EDIT_BOOK,
+        exports.Permission.ADD_BOOK,
+        exports.Permission.DELETE_BOOK,
+        exports.Permission.BROWSE_AUTHORS,
+        exports.Permission.READ_AUTHOR,
+        exports.Permission.EDIT_AUTHOR,
+        exports.Permission.ADD_AUTHOR,
+        exports.Permission.DELETE_AUTHOR,
+        exports.Permission.BROWSE_PUBLISHERS,
+        exports.Permission.READ_PUBLISHER,
+        exports.Permission.EDIT_PUBLISHER,
+        exports.Permission.ADD_PUBLISHER,
+        exports.Permission.DELETE_PUBLISHER,
+        exports.Permission.BROWSE_CATEGORIES,
+        exports.Permission.READ_CATEGORY,
+        exports.Permission.EDIT_CATEGORY,
+        exports.Permission.ADD_CATEGORY,
+        exports.Permission.DELETE_CATEGORY,
+    ],
+    _a[exports.Role.REGULAR_USER] = [
+        exports.Permission.BROWSE_BOOKS,
+        exports.Permission.READ_BOOK,
+        exports.Permission.BROWSE_AUTHORS,
+        exports.Permission.READ_AUTHOR,
+        exports.Permission.BROWSE_PUBLISHERS,
+        exports.Permission.READ_PUBLISHER,
+        exports.Permission.BROWSE_CATEGORIES,
+        exports.Permission.READ_CATEGORY,
+    ],
+    _a);
