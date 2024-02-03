@@ -14,10 +14,12 @@ const router = Router();
 router.use(validateToken);
 
 router.get('/', getBooks);
+// router.get('/:id', getBooks);
 router.post(
   '/',
   authorizePermission(Permission.ADD_BOOK) as any,
   postBook
 );
+
 
 export default router;

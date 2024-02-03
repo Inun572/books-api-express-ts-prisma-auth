@@ -20,7 +20,14 @@ export const postBook = async (
   res: Response
 ) => {
   try {
-    const { title, author } = req.body;
+    const {
+      title,
+      isbn,
+      synopsys,
+      author_id,
+      publisher_id,
+      category_id,
+    } = req.body;
 
     res.json({
       message: 'Book created',
