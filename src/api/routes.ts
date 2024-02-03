@@ -5,6 +5,6 @@ import bookRoutes from './routes/bookRoutes';
 const router = Router();
 
 router.use('/auth', authRoutes);
-router.use('/protected', bookRoutes);
+router.use('/books', bookRoutes);
 
 export default router;

@@ -1,9 +1,23 @@
 import { Router } from 'express';
-import { validateToken } from '../validators/authValidator';
-import { getBooks } from '../controllers/bookController';
+import {
+  authorizePermission,
+  validateToken,
+} from '../middlewares/authMiddleware';
+import {
+  getBooks,
+  postBook,
+} from '../controllers/bookController';
+import { Permission } from '../../database/auth-seeds';
 
 const router = Router();
 
-router.get('/', validateToken, getBooks as any);
+router.use(validateToken);
+
+router.get('/', getBooks);
+router.post(
+  '/',
+  authorizePermission(Permission.ADD_BOOK) as any,
+  postBook
+);
 
 export default router;

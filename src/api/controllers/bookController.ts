@@ -1,9 +1,33 @@
-import { Response } from 'express';
-import { CustomRequest } from '../validators/authValidator';
+import { Request, Response } from 'express';
+import { getBooks as getAllBooks } from '../services/bookServices';
 
 export const getBooks = async (
-  req: CustomRequest,
+  req: Request,
   res: Response
 ) => {
-  res.json({ message: 'protected data' });
+  try {
+    const books = await getAllBooks();
+    res.json({ message: 'protected data', data: books });
+  } catch (err) {
+    res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+};
+
+export const postBook = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { title, author } = req.body;
+
+    res.json({
+      message: 'Book created',
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
 };
