@@ -1,8 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import {
-  findToken,
-  getUserByEmail,
-} from '../services/authService';
+import { getUserByEmail } from '../services/authService';
 import bcrypt from 'bcrypt';
 
 export type userPublicData = {
@@ -10,6 +7,7 @@ export type userPublicData = {
   email: string;
   name: string;
   is_blocked: boolean;
+  role_id: number;
 };
 export interface CustomRequest extends Request {
   user: userPublicData;
@@ -46,44 +44,6 @@ export const validateLoginRequest = async (
   }
 
   (req as CustomRequest).user = user;
-
-  next();
-};
-
-export const validateToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(401).json({
-      message: 'Unauthenticated',
-    });
-  }
-
-  const validToken = await findToken(token);
-
-  if (!validToken) {
-    return res.status(401).json({
-      message: 'Invalid token',
-    });
-  }
-
-  if (validToken.expires_at < new Date()) {
-    return res.status(401).json({
-      message: 'Token expired',
-    });
-  }
-
-  if (validToken.user.is_blocked) {
-    return res.status(401).json({
-      message: 'User blocked',
-    });
-  }
-
-  (req as CustomRequest).user = validToken.user;
 
   next();
 };

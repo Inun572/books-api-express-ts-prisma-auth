@@ -34,6 +34,7 @@ export const findToken = async (token: string) => {
           email: true,
           name: true,
           is_blocked: true,
+          role_id: true,
         },
       },
     },

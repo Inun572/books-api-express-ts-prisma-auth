@@ -11,18 +11,18 @@ const main = async () => {
   await prisma.role.deleteMany();
   await prisma.permission.deleteMany();
 
-  for (const role in Role) {
+  for (const role of Object.values(Role)) {
     await prisma.role.create({
       data: {
-        name: Role[role],
+        name: role,
       },
     });
   }
 
-  for (const permission in Permission) {
+  for (const permission of Object.values(Permission)) {
     await prisma.permission.create({
       data: {
-        name: Permission[permission],
+        name: permission,
       },
     });
   }
@@ -41,12 +41,14 @@ const main = async () => {
           },
         });
 
-      await prisma.permissionRole.create({
-        data: {
-          role_id: roleRecord?.id,
-          permission_id: permissionRecord?.id,
-        },
-      });
+      if (roleRecord && permissionRecord) {
+        await prisma.permissionRole.create({
+          data: {
+            role_id: roleRecord.id,
+            permission_id: permissionRecord.id,
+          },
+        });
+      }
     }
   }
 };
