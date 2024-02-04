@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import {
   addAuthor,
   getAuthors,
+  update,
 } from '../services/authorServices';
 
 export const getAllAuthors = async (
@@ -24,4 +25,24 @@ export const postAuthor = async (
     message: 'add authors success',
     authors: data,
   });
+};
+
+export const editAuthor = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    await update({
+      id: Number(req.params.id),
+      name: req.body.author,
+    });
+
+    res.json({
+      message: 'update authors success',
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'Internal server error' });
+  }
 };

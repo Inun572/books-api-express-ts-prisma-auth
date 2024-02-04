@@ -7,7 +7,6 @@ import {
   getBooks,
   postBook,
 } from '../controllers/bookController';
-import { Permission } from '../../database/auth-seeds';
 
 const router = Router();
 
