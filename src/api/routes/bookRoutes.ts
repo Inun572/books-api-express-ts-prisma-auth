@@ -5,15 +5,17 @@ import {
 } from '../middlewares/authMiddleware';
 import {
   getBooks,
+  getBooksById,
   postBook,
 } from '../controllers/bookController';
+import { bookParamsValidator } from '../validators/bookValidator';
 
 const router = Router();
 
-router.use(validateToken);
-
 router.get('/', getBooks);
-// router.get('/:id', getBooks);
+router.get('/:id', bookParamsValidator, getBooksById);
+
+router.use(validateToken);
 router.post(
   '/',
   authorizePermission(Permission.ADD_BOOK),

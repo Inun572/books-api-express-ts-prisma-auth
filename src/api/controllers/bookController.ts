@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import { getBooks as getAllBooks } from '../services/bookServices';
+import {
+  find,
+  getBooks as getAllBooks,
+} from '../services/bookServices';
 
 export const getBooks = async (
   req: Request,
@@ -8,6 +11,24 @@ export const getBooks = async (
   try {
     const books = await getAllBooks();
     res.json({ message: 'protected data', data: books });
+  } catch (err) {
+    res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+};
+
+export const getBooksById = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const book = await find(Number(req.params.id));
+
+    res.json({
+      message: 'success get book',
+      data: book,
+    });
   } catch (err) {
     res.status(500).json({
       message: 'Internal server error',
