@@ -2,17 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import { getUserByEmail } from '../services/authService';
 import bcrypt from 'bcrypt';
 
-export type userPublicData = {
-  id: number;
-  email: string;
-  name: string;
-  is_blocked: boolean;
-  role_id: number;
-};
-export interface CustomRequest extends Request {
-  user: userPublicData;
-}
-
 export const validateLoginRequest = async (
   req: Request,
   res: Response,
@@ -43,7 +32,7 @@ export const validateLoginRequest = async (
       .json({ message: 'Password incorrect' });
   }
 
-  (req as CustomRequest).user = user;
+  req.user = user;
 
   next();
 };

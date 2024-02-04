@@ -17,9 +17,8 @@ router.get('/', getBooks);
 // router.get('/:id', getBooks);
 router.post(
   '/',
-  authorizePermission(Permission.ADD_BOOK) as any,
+  authorizePermission(Permission.ADD_BOOK),
   postBook
 );
-
 
 export default router;

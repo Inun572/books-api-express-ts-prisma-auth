@@ -8,6 +8,6 @@ import { validateLoginRequest } from '../validators/authValidator';
 const router = Router();
 
 router.get('/users', getUsers);
-router.post('/login', validateLoginRequest, login as any);
+router.post('/login', validateLoginRequest, login);
 
 export default router;

@@ -4,7 +4,7 @@ export const getAuthors = async () => {
   return await prisma.author.findMany();
 };
 
-export const addAuthor = async (author: any) => {
+export const addAuthor = async (author: string) => {
   return await prisma.author.create({
     data: { name: author },
   });
@@ -18,15 +18,12 @@ export const find = async (authorId: number) => {
   });
 };
 
-export const update = async (
-  authorId: number,
-  author: any
-) => {
+export const update = async (data: Author) => {
   return await prisma.author.update({
     where: {
-      id: authorId,
+      id: data.id,
     },
-    data: author,
+    data: data.name,
   });
 };
 

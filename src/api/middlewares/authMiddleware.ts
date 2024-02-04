@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { findToken } from '../services/authService';
-import { CustomRequest } from '../validators/authValidator';
 import prisma from '../../prisma';
 
 export const validateToken = async (
@@ -36,14 +35,14 @@ export const validateToken = async (
     });
   }
 
-  (req as CustomRequest).user = validToken.user;
+  req.user = validToken.user;
 
   next();
 };
 
 export const authorizePermission = (permission: string) => {
   return async (
-    req: CustomRequest,
+    req: Request,
     res: Response,
     next: NextFunction
   ) => {
