@@ -3,26 +3,27 @@ import {
   createToken,
   getUsers as getAllUsers,
 } from '../services/authService';
-import { CustomRequest } from '../validators/authValidator';
 
 export const login = async (
-  req: CustomRequest,
+  req: Request,
   res: Response
 ) => {
   try {
-    const userId = req.user.id;
-    const token = await createToken(userId);
+    if (req.user) {
+      const userId = req.user.id;
+      const token = await createToken(userId);
 
-    if (!token) {
-      return res
-        .status(500)
-        .json({ error: 'Failed to create token' });
+      if (!token) {
+        return res
+          .status(500)
+          .json({ error: 'Failed to create token' });
+      }
+
+      res.json({
+        message: 'login success',
+        token: token.token,
+      });
     }
-
-    res.json({
-      message: 'login success',
-      token: token.token,
-    });
   } catch (err) {
     res.status(500).json({ error: err });
   }

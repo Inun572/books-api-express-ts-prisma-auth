@@ -18,12 +18,12 @@ export const find = async (authorId: number) => {
   });
 };
 
-export const update = async (data: Author) => {
+export const update = async (author: Author) => {
   return await prisma.author.update({
     where: {
-      id: data.id,
+      id: author.id,
     },
-    data: data.name,
+    data: author.name,
   });
 };
 
