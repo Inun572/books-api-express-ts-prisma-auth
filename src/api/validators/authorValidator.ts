@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-export const authorValidator = async (
+export const authorParamsValidator = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -17,6 +17,14 @@ export const authorValidator = async (
     });
   }
 
+  next();
+};
+
+export const authorValidator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.body.author) {
     return res.status(400).json({
       message: "Author's name is required",

@@ -8,7 +8,10 @@ import {
   authorizePermission,
   validateToken,
 } from '../middlewares/authMiddleware';
-import { authorValidator } from '../validators/authorValidator';
+import {
+  authorParamsValidator,
+  authorValidator,
+} from '../validators/authorValidator';
 
 const router = Router();
 
@@ -25,6 +28,7 @@ router.post(
 );
 router.put(
   '/:id',
+  authorParamsValidator,
   authorizePermission(Permission.EDIT_AUTHOR),
   editAuthor
 );
