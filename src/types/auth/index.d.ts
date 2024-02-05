@@ -1,4 +1,4 @@
-declare type UserPublicData = {
+type UserPublicData = {
   id: number;
   name: string;
   email: string;
@@ -6,17 +6,17 @@ declare type UserPublicData = {
   role_id: number;
 };
 
-declare type ValidateLogin = {
+type ValidateLogin = {
   email: string;
   password: string;
 };
 
-declare enum Role {
+enum Role {
   ADMINISTRATOR = 'administrator',
   REGULAR_USER = 'regular_user',
 }
 
-declare enum Permission {
+enum Permission {
   BROWSE_BOOKS = 'browse_books',
   READ_BOOK = 'read_book',
   EDIT_BOOK = 'edit_book',
@@ -42,4 +42,4 @@ declare enum Permission {
   DELETE_CATEGORY = 'delete_category',
 }
 
-declare type PermissionString = keyof typeof Permission;
+type PermissionString = keyof typeof Permission;
