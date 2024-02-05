@@ -41,6 +41,7 @@ export const editAuthor = async (
       message: 'update authors success',
     });
   } catch (err) {
+    console.log(err);
     res
       .status(500)
       .json({ message: 'Internal server error' });

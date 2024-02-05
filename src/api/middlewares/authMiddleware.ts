@@ -40,9 +40,7 @@ export const validateToken = async (
   next();
 };
 
-export const authorizePermission = (
-  permission: Permission
-) => {
+export const authorizePermission = (permission: string) => {
   return async (
     req: Request,
     res: Response,

@@ -12,6 +12,7 @@ import {
   authorParamsValidator,
   authorValidator,
 } from '../validators/authorValidator';
+import { Permission } from '../../database/auth-seeds';
 
 const router = Router();
 

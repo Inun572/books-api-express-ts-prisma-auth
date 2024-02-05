@@ -23,7 +23,9 @@ export const update = async (author: Author) => {
     where: {
       id: author.id,
     },
-    data: author.name,
+    data: {
+      name: author.name,
+    },
   });
 };
 
