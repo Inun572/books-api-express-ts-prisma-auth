@@ -25,6 +25,11 @@ export const getBooksById = async (
   try {
     const book = await find(Number(req.params.id));
 
+    if (!book) {
+      return res.status(404).json({
+        message: 'Book not found',
+      });
+    }
     res.json({
       message: 'success get book',
       data: book,
