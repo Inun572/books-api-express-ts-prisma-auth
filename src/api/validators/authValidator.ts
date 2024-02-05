@@ -18,6 +18,12 @@ export const validateLoginRequest = async (
     return res.status(400).json({ error });
   }
 
+  if (/^\S+@\S+\.\S+$/.test(req.body.email) === false) {
+    return res
+      .status(400)
+      .json({ error: 'Invalid email format' });
+  }
+
   const { email, password } = req.body;
   const user = await getUserByEmail(email);
 
